@@ -41,7 +41,6 @@
 	<dependency>
 		<groupId>junit</groupId>
 		<artifactId>junit</artifactId>
-		<scope>test</scope>
 		<version>4.10</version>
 	</dependency>
 	<!-- log4j -->
@@ -140,8 +139,13 @@
 		<artifactId>guava</artifactId>
 		<version>18.0</version>
 	</dependency>
-	
-	  
+	  <dependency>
+		  <groupId>org.junit.jupiter</groupId>
+		  <artifactId>junit-jupiter-api</artifactId>
+		  <version>RELEASE</version>
+	  </dependency>
+
+
   </dependencies>
   
   	<build>
@@ -163,7 +167,7 @@
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<configuration>
-					<port>80</port>
+					<port>8088</port>
 					<path>/</path>
 				</configuration>
 			</plugin>
