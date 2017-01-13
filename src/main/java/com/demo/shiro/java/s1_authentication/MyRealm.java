@@ -35,7 +35,7 @@ public class MyRealm implements Realm{
             throw new IncorrectCredentialsException(); //如果密码错误
         }
         //如果身份认证验证成功，返回一个 AuthenticationInfo 实现；
-        System.out.println("MyRealm ------------- 验证成功" );
+        System.out.println("MyRealm ------------- 认证成功" );
         return new SimpleAuthenticationInfo(username, password, getName());
     }
 }
