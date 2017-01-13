@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController {
 
-    @RequestMapping("login.do")
+    @RequestMapping("/login")
     public String login() {
         System.out.println("login");
         return "login";
     }
 
 
-    @RequestMapping("logout.do")
+    @RequestMapping("/logout")
     public String logout() {
         System.out.println("logout");
         return "login";
