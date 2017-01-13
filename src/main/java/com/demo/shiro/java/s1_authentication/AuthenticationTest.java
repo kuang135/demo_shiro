@@ -14,10 +14,10 @@ import org.junit.Test;
  *  2、调用 Subject.login 进行登录，如果失败将得到相应的 AuthenticationException 异常，根据异常提示用户错误信息；否则登录成功；
  *  3、最后调用 Subject.logout 进行退出操作。
  */
-public class A1_Authentication {
+public class AuthenticationTest {
 
     @Test
-    public void authenticationSuccess() {
+    public void loginSuccess() {
         //1、获取 SecurityManager 工厂，此处使用 Ini 配置文件初始化 SecurityManager
         Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:java/s1_authentication/shiro.ini");
         //2、得到 SecurityManager 实例 并绑定给 SecurityUtils
@@ -25,7 +25,7 @@ public class A1_Authentication {
         SecurityUtils.setSecurityManager(securityManager);
         //3、得到 Subject 及创建用户名/密码身份验证 Token（即用户身份/凭证）
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken("zhang", "123");
+        UsernamePasswordToken token = new UsernamePasswordToken("yao", "123");
         try {
             //4、登录，即身份验证
             subject.login(token);
@@ -39,7 +39,7 @@ public class A1_Authentication {
     }
 
     @Test
-    public void authenticationError() {
+    public void loginError() {
         //1、获取 SecurityManager 工厂，此处使用 Ini 配置文件初始化 SecurityManager
         Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:java/s1_authentication/shiro.ini");
         //2、得到 SecurityManager 实例 并绑定给 SecurityUtils
@@ -47,7 +47,7 @@ public class A1_Authentication {
         SecurityUtils.setSecurityManager(securityManager);
         //3、得到 Subject 及创建用户名/密码身份验证 Token（即用户身份/凭证）
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken("zhang", "456");
+        UsernamePasswordToken token = new UsernamePasswordToken("yao", "456");
         try {
             //4、登录，即身份验证
             subject.login(token);
