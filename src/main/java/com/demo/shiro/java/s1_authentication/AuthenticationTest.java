@@ -10,7 +10,7 @@ import org.apache.shiro.util.Factory;
 import org.junit.Test;
 
 /**
- * 1、首先调用 Subject.login(token)进行登录，其会自动委托给 Security Manager，调用之前必须通过 SecurityUtils. setSecurityManager()设置；
+ * 1、首先调用 Subject.login(token)进行登录，其会自动委托给 SecurityManager，调用之前必须通过 SecurityUtils.setSecurityManager()设置；
  * 2、SecurityManager 负责真正的身份验证逻辑；它会委托给 Authenticator 进行身份验证；
  * 3、Authenticator 才是真正的身份验证者，Shiro API 中核心的身份认证入口点，此处可以自定义插入自己的实现；
  * 4、Authenticator 可能会委托给相应的 AuthenticationStrategy 进行多 Realm 身份验证，默认ModularRealmAuthenticator 会调用 AuthenticationStrategy 进行多 Realm 身份验证；
