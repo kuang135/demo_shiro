@@ -11,11 +11,11 @@
 </head>
 <body>
 <div>
-    <form id="saveform" method="post" action="login.do" class="form-horizontal" role="form">
+    <form id="saveform" method="post" action="/admin/login.do" class="form-horizontal" role="form">
         <div class="form-group" style="margin-top:5px">
-            <label for="title" class="col-sm-2 control-label text-left">用户名:</label>
+            <label for="userName" class="col-sm-2 control-label text-left">用户名:</label>
             <div class="col-sm-8">
-                <input type="text" class="form-control" id="title" name="title" placeholder="用户名" value="">
+                <input type="text" class="form-control" id="userName" name="userName" placeholder="用户名" value="">
             </div>
         </div>
         <div class="form-group" style="margin-top:5px">
@@ -25,8 +25,9 @@
             </div>
         </div>
         <br/>
+        <div class="text-center" style="color:red;">${error}</div>
         <div class="text-center">
-            <input type="submit" class="form-control bt"  value="提交">
+            <input type="submit" class="form-control bt"  value="/admin/login.do过来">
         </div>
     </form>
 </div>

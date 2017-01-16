@@ -9,11 +9,11 @@
 
    
     <!-- 自定义Realm -->
-	<bean id="userRealm" class="com.demo.shiro.spring.realm.UserRealm"/>
+	<bean id="myRealm" class="com.demo.shiro.spring.shiro.MyRealm"/>
 
 	<!-- 安全管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
-		<property name="realm" ref="userRealm"/>
+		<property name="realm" ref="myRealm"/>
 	</bean>
 
 	<!-- 相当于调用SecurityUtils.setSecurityManager(securityManager) -->
@@ -32,30 +32,35 @@
 	 		successUrl：登录成功后的默认重定向地址；
 	 		failureKeyAttribute：登录失败后错误信息存储 key（shiroLoginFailure）；
 	-->
-	<bean id="formAuthenticationFilter" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
-		<property name="usernameParam" value="username"/>
+	<bean id="formAuthenticationFilter" class="com.demo.shiro.spring.shiro.MyFormAuthenticationFilter">
+		<property name="usernameParam" value="userName"/>
 		<property name="passwordParam" value="password"/>
-		<property name="loginUrl" value="/login.jsp"/>
-		<property name="successUrl" value="/home.jsp"/>
 		<property name="failureKeyAttribute" value="shiroLoginFailure"/>
+	</bean>
+
+	<bean id="logoutFilter" class="org.apache.shiro.web.filter.authc.LogoutFilter">
+		<property name="redirectUrl" value="/admin/login.do"/>
 	</bean>
 
 	<!-- Shiro的Web过滤器 -->
 	<!-- DefaultFilterChainManager 会默认添加 org.apache.shiro.web.filter.mgt.DefaultFilter 中声明的拦截器 -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager"/>
+		<property name="loginUrl" value="/admin/login.do"/>
+		<property name="successUrl" value="/admin/index.do"/>
 		<property name="filters">
 			<util:map>
 				<entry key="authc" value-ref="formAuthenticationFilter"/>
+				<entry key="logout" value-ref="logoutFilter"/>
 			</util:map>
 		</property>
 		<property name="filterChainDefinitions">
 			<value>
 				/static/** = anon <!--AnonymousFilter.class-->
 				<!--/jcaptcha.jpg = anon-->
-				/login.do = authc <!--FormAuthenticationFilter.class-->
-				/logout.do = logout
-				/** = authc
+				/admin/login.do = authc <!-- 登录 -->
+				/admin/logout.do = logout <!-- 登出 -->
+				/admin/*.do = authc <!--MyFormAuthenticationFilter-->
 			</value>
 		</property>
 	</bean>
