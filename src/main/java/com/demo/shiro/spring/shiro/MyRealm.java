@@ -9,7 +9,6 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.authz.permission.WildcardPermission;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
@@ -39,10 +38,10 @@ public class MyRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         System.out.println("-------- 认证开始 -----------");
-        String userName=(String)token.getPrincipal(); //得到用户名
-        User user=userService.getUserByName(userName);
+        String userName = (String)token.getPrincipal(); //得到用户名
+        User user = userService.getUserByName(userName);
         if(user != null){
-            AuthenticationInfo authcInfo=new SimpleAuthenticationInfo(user.getName(), user.getPassword(), super.getName());
+            AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(user.getName(), user.getPassword(), super.getName());
             Subject subject = SecurityUtils.getSubject();
             Session session = subject.getSession();
             session.setAttribute("currentUser", user);

@@ -10,8 +10,5 @@
     <link rel="stylesheet" href="/static/bootstrap-3.3.0/css/bootstrap.min.css">
 </head>
 <h1>其他页面</h1>
-<div class="text-center">
-    <img src="/admin/image/id.do" style="width:600px;height:400px;"/>
-</div>
 </body>
 </html>
