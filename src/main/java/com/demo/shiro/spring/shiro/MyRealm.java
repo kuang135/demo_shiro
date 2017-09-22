@@ -23,6 +23,7 @@ public class MyRealm extends AuthorizingRealm {
     @Autowired
     private UserService userService;
 
+	//授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         System.out.println("-------开始授权------");
@@ -35,6 +36,7 @@ public class MyRealm extends AuthorizingRealm {
         return authorizationInfo;
     }
 
+	//认证
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         System.out.println("-------- 认证开始 -----------");

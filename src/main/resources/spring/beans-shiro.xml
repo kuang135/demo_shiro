@@ -8,10 +8,11 @@
 
 
    
-    <!-- 自定义Realm -->
+    <!-- Realm: Shiro 从 Realm 获取安全数据（如用户、角色、权限） -->
 	<bean id="myRealm" class="com.demo.shiro.spring.shiro.MyRealm"/>
 
-	<!-- 安全管理器 -->
+	<!-- 安全管理器: 管理着所有 Subject，继承自SecurityManager -->
+	<!-- 安全管理器: 默认使用ServletContainerSessionManager，直接使用 Servlet 容器的会话 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="myRealm"/>
 	</bean>
@@ -43,6 +44,7 @@
 	</bean>
 
 	<!-- Shiro的Web过滤器 -->
+	<!-- getObject() -> createInstance -> createFilterChainManager() -->
 	<!-- DefaultFilterChainManager 会默认添加 org.apache.shiro.web.filter.mgt.DefaultFilter 中声明的拦截器 -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager"/>
